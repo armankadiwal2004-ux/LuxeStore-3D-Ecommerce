@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-glass: rgba(255, 255, 255, 0.08);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+  --color-glass-light: rgba(0, 0, 0, 0.04);
+  --color-glass-border-light: rgba(0, 0, 0, 0.08);
+  --color-accent: #8b5cf6;
+  --color-accent-hover: #7c3aed;
+  --color-accent-glow: rgba(139, 92, 246, 0.4);
+}
+
+@layer base {
+  html {
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-gray-950 text-white transition-colors duration-300;
+    overflow-x: hidden;
+  }
+  body.light-mode {
+    @apply bg-gray-50 text-gray-900;
+  }
+}   
+
+@layer components {
+  .glass {
+    background: var(--color-glass);
+    border: 1px solid var(--color-glass-border);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+  .light-mode .glass {
+    background: var(--color-glass-light);
+    border: 1px solid var(--color-glass-border-light);
+  }
+  .glass-card {
+    background: var(--color-glass);
+    border: 1px solid var(--color-glass-border);
+    backdrop-filter: blur(16px) saturate(160%);
+    border-radius: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .glass-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 30px var(--color-accent-glow);
+    transform: translateY(-4px);
+  }
+  .light-mode .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 cursor-pointer;
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    box-shadow: 0 4px 20px var(--color-accent-glow);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--color-accent-glow);
+  }
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300 border border-white/20 cursor-pointer;
+    background: var(--color-glass);
+    backdrop-filter: blur(10px);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+  }
+  .glow-text {
+    text-shadow: 0 0 40px var(--color-accent-glow), 0 0 80px rgba(139,92,246,0.2);
+  }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.5); }
+
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: opacity 0.3s;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
