@@ -64,8 +64,8 @@ const pageContent = {
     category: 'Support',
     intro: 'Our team is ready to help with your product, delivery, and account questions.',
     contactDetails: {
-      phone: ' 8418086908\n7862074937',
-      email: 'Anuj@luxestore.com',
+      phone: '9821363466',
+      email: 'armankadiwal2004@gmail.com',
       hours: 'Mon - Sat, 9:00 AM - 8:00 PM'
     },
     highlights: [
